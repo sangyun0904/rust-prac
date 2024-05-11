@@ -19,3 +19,12 @@ heap에 데이터에 접근하는 것은 stack에 데이터에 접근하는것�
 코드가 함수를 실행할 때 (그 데이터는 주로 heap에 있는 데이터를 가리키는 pointer일 것이다.) 그러면 함수의 로컬 변수가되어 stack에 push 된다. 그리고 함수가 끝나면 그 데이터는 pop되어 stack을 빠져나간다.  
 
 코드의 어떤 부분이 heap의 데이터를 사용하는지, heap에 중복된 데이터가 많지는 않은지, heap에 사용하지 않는 데이터가 남아있는지 등이 ownership이 다루는 문제이다. ownership을 잘 이해하면 heap과 stack에 많은 신경을 쓰지 않울 수 있다. 그러나 ownership에 목적이 heap 데이터를 관리하는 것이라는 것을 이해하는것은 ownership의 동작 과정을 이해하는데 큰 도움이 된다. 
+
+## Ownership의 규칙
+
+먼저 ownership의 규칙은 다음뫄 같다. 이후에 예시들을 설명할 때 이 규칙들을 명심하자. 
+- Rust의 모든 값을 owner가 존재한다.
+- 한 순간엔 하나의 owner 만 존재할 수 있다. 
+- owner가 scope 밖으로 사라지면 값은 drop된다.  
+
+ownership의 규칙에 대해 이야기 하기 위해서는 우리가 data type에서 보았던 int, char, float과 같은 데이터 타입보다 복잡한 데이터 타입이 필요하다. 그러한 데이터들은 고정된 크기의 byte 수를 가지고 stack에 저장될 수 있다. 
