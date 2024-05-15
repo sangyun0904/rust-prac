@@ -3,8 +3,9 @@ fn main()
     let mut s = String::from("hello world");
     let first_s = first_word(&s);
     println!("{}", first_s);
-
+    
     s.clear();
+    println!("{}", s);
 
     let s = String::from("hello world");
 
