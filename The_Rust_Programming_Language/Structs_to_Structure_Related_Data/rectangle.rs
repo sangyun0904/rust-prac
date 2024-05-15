@@ -6,6 +6,23 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+}
+
 fn main()
 {
     let width1 = 30;
@@ -35,6 +52,28 @@ fn main()
     println!("rect2 is {:?}", rect2);
     // We can put dbg! around the expression 30 * scale and, because dbg! returns ownership of the expression’s value,
     dbg!(&rect2);
+
+    println!(
+        "the area of the rectangle is {} square pixels.",
+        rect2.area()
+    );
+
+    let rect3 = Rectangle {
+        width: 40, 
+        height: 60,
+    };
+
+    println!(
+        "rect3 can hold reac2 : {}",
+        rect3.can_hold(&rect2)
+    );
+
+    let square1 = Rectangle::square(20);
+    println!(
+        "square1 area size is {}\nsquare1 can hold rect2 : {}",
+        square1.area(),
+        square1.can_hold(&rect2)
+    );
 
 }
 
